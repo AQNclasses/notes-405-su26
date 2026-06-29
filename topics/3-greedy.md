@@ -33,7 +33,7 @@ What order should we use if we want this expected cost to be minimized?
 The order is called a permutation, $\pi$. $\pi(i)$ denotes the index of the file
 stored at position $i$ on the tape.
 
-**Lemma 4.1.** E[cost(\pi)] is minimized when $L[\pi(i)] \leq L[\pi(i+1)\]$ for
+**Lemma 4.1.** $E[cost(\pi)]$ is minimized when $L[\pi(i)] \leq L[\pi(i+1)\]$ for
 all $i$.
 
 **Proof:** Suppose $L[\pi(i)] > L[\pi(i+1)]$ for some index $i$. Let $a=\pi(i)$
