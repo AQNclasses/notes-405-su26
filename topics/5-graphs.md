@@ -2,6 +2,25 @@
 
 - See Chapter 5.2 of Erickson for definitions we will be using in this course
 
+Terms to know:
+
+- node / vertex (plural: nodes / vertices)
+  - same pattern: matrix/matrices, index/indices
+- edge
+- directed vs undirected
+- *degree* (of a vertex): can narrow to in-degree and out-degree
+- neighbor, adjacency
+- edge weights
+- *walk*: sequence of adjacent vertices
+- *path*: a walk that visits each vertex in walk at most once
+- vertex v is *reachable* from vertex u if there is a walk from u to v
+- *connected*: in undirected graph specifically, if every vertex reachable from every other vertex
+- *component*: maximal connected subgraph
+- walk is *closed* if it starts and ends at same vertex
+- cycle: a closed walk that enters and leaves each vertex at most once
+- tree vs. graph (definition: tree is a connected acyclic graph)
+- directed acyclic graphs (DAGs)
+
 
 ## Search
 
