@@ -11,12 +11,36 @@ We can analyze algorithms from multiple lenses:
 - Organizational culture
 - Economics
 
+## Course Structure Overview
+
+1. (Potentially) new methods: greedy algorithms, dynamic programming, randomized algorithms
+2. Combinatorial and Discrete Optimization: shortest paths in graphs, matchings, flows/cuts
+    - We will see demonstrations of methods from part 1 of the course in part 2 as we work with graph algorithms
+3. Writing point: practicing writing and **revising**, mostly in the context of technical writing
+
+We will interleave discussions of computational complexity theory and formal methods.
+
 ## Computational model review
 
 - RAM model
-- loose definition of units
-- most important thing is distinguishing constant time operations from non-constant time
-- everything measured in terms of input size
+- loose definition of units of (time/memory/etc): often defined during analysis of algorithm
+- mostly important to distinguish "constant time" from other types of operations
+    - constant in terms of **input size**
+    - input size should be proportional to bits, but often we ignore details like the size of each element in an array with $N$ elements
+    - can bound size of data on any actual machine
+- single-processor model
+
+## Algorithmic Problem Types
+
+1. Decision problem: classify input as YES or NO
+    - Example: Given a directed graph G, containing nodes $s$ and $t$, is there a path from $s$ to $t$?
+2. Search problem: find a solution if input allows one, otherwise return NO SOLUTION
+    - Completeness and correctness
+    - Example: Given a directed graph G, containing nodes $s$ and $t$, return the nodes along a path from $s$ to $t$.
+3. Optimization problem: find a *best* solution among all solutions, otherwise return NO SOLUTION
+    - Example: Given a graph $G$, containing nodes $s$ and $t$, find a shortest path from $s$ to $t$.
+
+## Computational Complexity
 
 ## Types of Problems
 
@@ -30,30 +54,6 @@ We can analyze algorithms from multiple lenses:
 
 ## Writing: Structuring an argument
 
-- What is rhetoric?
 - What is dialectic?
 - What is a syllogism?
-
-## Review of Induction
-
-- Major premise: If something is true for $k$, it is true for $k+1$
-- Minor premise: It is true for $k=0$
-- Conclusion: It is true for all $k$
-
-### Example 1: Handshaking
-
-Claim: In any gathering of people, the number of people who shake hands an odd
-number of times is always even.
-
-Inductive step: Assume the rule is true for a room of k people. Now, bring in a
-(k+1)-th person into the room. If this new person shakes hands with an even number
-of existing people, the number of odd-handshakers doesn't change, keeping the
-total count even. If the new person shakes hands with an odd number of existing
-people, exactly that many people shift from having an even count to an odd count, preserving the even
-total.
-
-### Example 2: Trominoes
-
-
-
-### Example 3: All Horses Are the Same Color
+- What is rhetoric?
