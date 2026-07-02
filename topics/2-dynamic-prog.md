@@ -81,7 +81,7 @@ Thus, we can write the recurrence:
 
 $$
 MIS(v) = \max \{ \sum_{w \in children(v)} MIS(w), 1 + \sum_{w \in child(v)}
-\sum{x \in child(w)} MIS(x) \}
+\sum_{x \in child(w)} MIS(x) \}
 $$
 
 How to evaluate? Post-order traversal!
