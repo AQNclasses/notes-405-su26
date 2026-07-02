@@ -62,3 +62,24 @@ We write down a **recurrence** that summarizes the performance of the
 - See worksheet (Rod Cut 2)
 - What is top-down?
 - What is bottom-up?
+
+## Maximum Independent Set in Trees
+
+In graphs, the *maximum independent set* is the largest set of nodes where no
+two nodes are directly adjacent. In general, this problem is NP-hard, but when
+the graph is specifically a *tree*, we can do better.
+
+For any node $v$ in a tree $T$, let $MIS(v)$ denote the size of the largest
+independent set in the subtree rooted at $v$.
+
+Note the problem structure: if $v$ is in the independent set, none of its
+children can be. On the other hand, if $v$ is not in the independent set, the
+union of independent sets of the subtrees rooted at $v$'s children is a valid
+independent set for $T$.
+
+Thus, we can write the recurrence:
+
+```math
+MIS(v) = \max \{ \sum_{w \in children(v)} MIS(w), 1 + \sum_{w \in child(v)}
+\sum{x \in child(w)} MIS(x)}
+```
