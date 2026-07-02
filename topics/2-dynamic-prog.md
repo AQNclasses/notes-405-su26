@@ -79,10 +79,10 @@ independent set for $T$.
 
 Thus, we can write the recurrence:
 
-```math
+$$
 MIS(v) = \max \{ \sum_{w \in children(v)} MIS(w), 1 + \sum_{w \in child(v)}
-\sum{x \in child(w)} MIS(x)} \}
-```
+\sum{x \in child(w)} MIS(x) \}
+$$
 
 How to evaluate? Post-order traversal!
 
