@@ -144,7 +144,7 @@ FisherYates(n):
 
   for i=n down to 1
     r = Random(1,n)
-    while not Chosen[r]
+    while Chosen[r]
       r = Random(1,n)
     R[i] = r
     Chosen[r] = true
