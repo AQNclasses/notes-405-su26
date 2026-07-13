@@ -118,10 +118,6 @@ t(n) & = \sum_{k=2}^n k = \frac{n(n+1)}{2} - 1 \\
 \end{align*}
 $$
 
-## Worksheet
-
-See randomized worksheet.
-
 ## Random Permutations
 
 What is a permutation?
@@ -184,7 +180,7 @@ Correctness? As we swap elements to the end of the array, we build our
 permutation. Since we never re-visit elements once they've been swapped to the
 end of the array, we've simulated drawing lots.
 
-Runtime? Clearly O(N).
+Runtime? O(N).
 
 ## Tail Inequalities
 
