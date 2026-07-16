@@ -164,6 +164,8 @@ $n$ to the goal.
 
 The correctness and optimality of A* depends on the heuristic function.
 
+## Admissability
+
 Specifically, the heuristic function must be *admissable*, defined as never
 *overestimating* the cost of reaching the goal. In other words, the heuristic
 must be a lower bound on the cost of reaching the goal from the current point in
@@ -179,6 +181,8 @@ Hamming distance (number of misplaced tiles) and the Manhattan distance
 (sum of differences in Cartesian coordinates) are both admissable heuristics.
 
 If the heuristic is admissable, A* is guaranteed to return an optimal solution.
+
+## Consistency
 
 However, if your heuristic is admissable but bad, A* may not do a very efficient
 search. To guarantee efficiency, the heuristic must also be *consistent*. To be
@@ -206,3 +210,18 @@ puzzle. If you choose two different subsets, and randomly select one to serve as
 the heuristic during search, this heuristic is still admissable but is no longer
 consistent: you are not guaranteed to have a monotonic relationship between
 subsequent nodes.
+
+## Analysis
+
+Time complexity? Still $O(E log V)$, as A* is complete on finite graphs, but in practice much faster.
+
+Space complexity is an issue, however, especially in large graphs. While it's
+still a dynamic programming algorithm (best known solutions are memoized in the
+graph itself or a data structure with the same size), the paths must be
+enumerated and held in memory. This has led to the development of bounded-memory
+heuristic search algorithms, which can still be proven to be correct and
+complete.
+
+It is also possible to speed up search by relaxing the optimality criterion;
+then, we want to guarantee that the solution we find is no worse than
+$(1+\epsilon)$ times the cost of the true optimal path.
