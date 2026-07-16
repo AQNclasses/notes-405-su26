@@ -2,7 +2,7 @@
 
 define MST
 
-define safe edges
+define safe edges: the minimum-weight edge with exactly one endpoint in some component of F, where F is the "intermediate spanning forest"
 
 define "useless" edges
 
