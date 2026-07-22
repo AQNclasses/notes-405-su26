@@ -7,6 +7,11 @@
 # Wednesday July 22
 
 - Lecture: Max Flows and Min-Cuts
-- Worksheet: Augmenting Paths
 - Quiz review (return and review Quiz 2 and Quiz 3)
 - Quiz 4
+
+# Thursday July 23
+
+- Worksheet: Augmenting Paths
+- Exam review: topic list, solicit questions from students
+- (As time allows) Computational Complexity Theory
