@@ -322,3 +322,16 @@ dist(u,r, r-1) + dist(r,v,r-1)
 \end{cases} & \text{otherwise}
 \end{cases}
 ```
+
+This can be evaluated using three nested for loops; the outer loop increments
+$r$, while the inner two loops check all starting and ending vertices and look
+for improvements to the best seen loop. Requires initializing all non-adjacent
+vertices with a dist of $\infty$ to start, which means this also works even if
+the graph has multiple components. It also detects negative cycles; values on
+the diagonal of the $dist$ matrix will be negative if negative cycles exist.
+
+Runtime? $O(V^3)$. We did it!
+
+Check out [this video](https://www.youtube.com/watch?v=Mn9bFIIyXIM) for a
+visualization of an example execution of the algorithm. I recommend following
+along by building your own $dist$ and $next$ tables on paper.
