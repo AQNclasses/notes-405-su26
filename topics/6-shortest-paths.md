@@ -225,3 +225,100 @@ complete.
 It is also possible to speed up search by relaxing the optimality criterion;
 then, we want to guarantee that the solution we find is no worse than
 $(1+\epsilon)$ times the cost of the true optimal path.
+
+# All-Pairs Shortest Paths
+
+Assumptions:
+
+- Directed graph
+- No negative cycles
+- Can apply to undirected graph as long as there are no negative edges; replace
+each undirected edge with two directed edges (in both directions). Negative edge
+weights would create negative cycles in undirected graphs.
+
+Motivation: We've done single-source shortest paths. To get the shortest paths
+from all nodes to all other nodes, what should we do?
+
+## Baseline
+
+At the very least, we could run our single-source shortest path algorithms from
+every node and store all the results.
+
+The results will be stored in a $V \times V$ sized table for the `dist`
+quantities, and the same sized table for the `pred` or `next` pointers required
+to reconstruct the paths. So the amount of information we need to compute and
+store has changed from $\Omega(V)$ to $\Omega(V^2)$.
+
+By extending our previously learned shortest-path algorithms by running them
+each once for each node, we can obtain some upper bounds:
+
+- If graph is unweighted, we can use breadth-first search from each node, giving
+a runtime of $O(V(V+E)) = O(VE) = O(V^3)$.
+- If graph is acyclic, we can use depth first or topological search, also giving
+$O(V^3).
+- If all edge weights are non-negative, we can run Dijkstra's algorithm $V$
+times, giving $O(V E \log V) = O(V^3 \log V)$
+- If we run Bellman-Ford from each vertex, we get a runtime of $O(V^2 E) =
+O(V^4)$.
+
+Question: Can we do better in the general case (cyclic graph with some negative
+edge weights)?
+
+## Reweighting
+
+If we have negative edges, can we just "shift" all the weights by adding a
+positive constant to them? No. See Fig 9.1 in book for a counterexample.
+
+However, we may be able to come up with a more clever scheme. Suppose each node
+$u$ has a "price" $\pi(u)$, which is paid upon entering the node and refunded when you exit
+the node (if the node is part of a path). We could then define an edge reweighting function as
+
+```math
+w'(u,v) = \pi(u) + w(u,v) - \pi(v)
+```
+
+where $w$ is the original weight of the edge from $u$ to $v$.
+
+Challenge: prove that this reweighting function will not change the *ordering*
+of shortest paths in the graph. This is the property we need for a valid
+reweighting function.
+
+## Johnson's Algorithm
+
+```
+1. add vertex s* to graph
+2. connect s* to all nodes with directed edges from s* to the node with weight 0
+3. run bellman-ford
+4. reweight edges using dist(s*,v) as the price for each node v
+5. Run Dijkstra's algorithm from each node
+```
+
+The above algorithm has a runtime of $O(VE \log V)$, as the runtime is dominated
+by the $V$ calls to Dijkstra's algorithm. This is $O(V^3 \log V)$, so we have
+improved our asymptotic runtime in the case of negative edges!
+
+Can we do even better?
+
+## Floyd Warshall
+
+Key insight: we can make this a dynamic programming problem by decomposing
+shortest paths in a clever way. Observe that for any vertex $r$, an arbitrary
+shortest path from node $u$ to node $v$ either passes through $r$ or it doesn't.
+If the shortest path does pass through $r$, it can be decomposed into shortest
+paths $u \to r$ and $r \to v$. By exhaustively checking for shortest paths that
+go through *every possible vertex*, we can find all shortest paths, and
+potentially memoize stuff along the way.
+
+This insight can be written as a recurrence. Let $\pi(u,v,r)$ be the shortest
+path from $u$ to $v$ that passes through only vertices with indices equal to or
+less than $r$. Let $dist(u,v,r)$ be the distance of this path.
+
+```math
+dist(u,v,r) = \begin{cases}
+w(u,v) & \text{if $r=0$} \\
+\min \begin{cases}
+dist(u,v,r-1) \\
+dist(u,r, r-1) + dist(r,v,r-1)
+\end{cases} & \text{otherwise}
+\end{cases}
+```
