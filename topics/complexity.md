@@ -13,7 +13,7 @@ It asks whether there is any assignment of 0s and 1s to the inputs of the
 circuit such that the circuit outputs 1.
 
 ![A boolean circuit made of AND, OR, and NOT gates. The circuit has five
-inputs and one output.](figs/circuit.png){width=200px}
+inputs and one output.](circuit.png){width=200px}
 
 Given a particular circuit and a set of inputs, it is easy to check (in time
 polynomial in the number of gates $m$), whether a particular set of inputs
